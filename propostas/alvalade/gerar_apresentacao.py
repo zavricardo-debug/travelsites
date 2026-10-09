@@ -304,6 +304,46 @@ street_slide(
      ("Restauração", "Taste Invaders  (n.º 22)")])
 
 
+# ---- Lista completa de comércios por rua ----
+s = prs.slides.add_slide(BLANK)
+header(s, "Comércio existente em cada rua (lista completa)", "Lista a validar no local")
+colunas = [
+    ("Acácio Paiva", RED, ["Millennium bcp (banco)", "Cobaia (n.º 19)", "Oakberry Açaí (n.º 3F)",
+                           "Tasco Force (n.º 5D)", "The Coffee Alvalade (n.º 14C, em abertura)"]),
+    ("Marquesa de Alorna", BLUE, ["Pasta Non Basta (n.º 17B)", "A Triunfante de Alvalade (n.º 18)",
+                                  "O Declive (n.º 22D)", "Petisco de Alvalade (n.º 25)",
+                                  "Tasca O Cantinho dos Sabores (n.º 30A)", "Truta e Meia (n.º 30)",
+                                  "Mickael Mezdari, pâtisserie (n.º 27C)"]),
+    ("José d'Esaguy", GREEN, ["Bankinter (banco)", "Alberto Oculista (ótica)", "Isco Pão e Vinho (n.º 10D)",
+                              "Yokohama (n.º 3B)", "Pérola do Ceira (n.º 4E)", "100 Montaditos (n.º 5)"]),
+    ("José Duro", ORANGE, ["BPI (banco)", "O Luís (n.º 29)", "MADPIZZA (n.º 25)", "Do Beco Alvalade (n.º 31A)",
+                           "Restaurante Courenses (n.º 25C-D)", "Taste Invaders (n.º 22)",
+                           "Maria Granel (n.º 22B, a confirmar)", "Laboratório do Gelado (n.º 21B, a confirmar)",
+                           "Snack-bar pastelaria Helsinquia (a confirmar)"]),
+]
+cw = Inches(2.98)
+for i, (titulo, cor, itens) in enumerate(colunas):
+    x = Inches(0.7) + i * (cw + Inches(0.12))
+    rect(s, x, Inches(1.95), cw, Inches(0.6), cor)
+    text(s, x + Inches(0.12), Inches(1.95), cw - Inches(0.24), Inches(0.6), titulo, size=15, bold=True,
+         color=INK if cor in (YELLOW, PINK) else WHITE, anchor=MSO_ANCHOR.MIDDLE)
+    rect(s, x, Inches(2.55), cw, Inches(4.1), CREAM)
+    tb = s.shapes.add_textbox(x + Inches(0.12), Inches(2.7), cw - Inches(0.24), Inches(3.9))
+    tf = tb.text_frame
+    tf.word_wrap = True
+    for k, item in enumerate(itens):
+        p = tf.paragraphs[0] if k == 0 else tf.add_paragraph()
+        p.space_after = Pt(6)
+        r = p.add_run()
+        r.text = "•  " + item
+        r.font.size = Pt(12)
+        r.font.color.rgb = INK
+        r.font.name = "Calibri"
+text(s, Inches(0.7), Inches(6.7), Inches(12), Inches(0.3),
+     "Fontes: Junta de Freguesia de Alvalade, OpenAlfa, TripAdvisor, Restaurant Guru e sites dos estabelecimentos.",
+     size=10, color=GREY)
+footer(s)
+
 # ---- Porque a cor ajuda ----
 s = prs.slides.add_slide(BLANK)
 header(s, "Porque é que a cor e as montras trazem visitantes", "O argumento")
