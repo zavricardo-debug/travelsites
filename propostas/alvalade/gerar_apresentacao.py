@@ -161,13 +161,19 @@ def street_slide(nome, cor, cor_txt, img, pintura, montra_intro, lojas):
     pic = s.shapes.add_picture(img, Inches(0.6), Inches(1.95), width=Inches(6.9))
     rect(s, Inches(0.6), Inches(1.95) + pic.height + Inches(0.1), Inches(0.35), Inches(0.35), cor)
     text(s, Inches(1.05), Inches(1.95) + pic.height + Inches(0.05), Inches(6.8), Inches(0.5),
-         "Simulação visual: estrada pintada de " + cor_txt.lower() + " e montra à entrada", size=12, color=GREY)
+         "Simulação visual: estrada pintada em " + cor_txt.lower() + " e montra à entrada", size=12, color=GREY)
     # Painel de texto
     text(s, Inches(8.2), Inches(1.9), Inches(4.6), Inches(1.5), pintura, size=14, color=INK)
     # Montra estilo 'diretório de centro comercial'
     bx, by, bw, bh = Inches(8.2), Inches(3.5), Inches(4.6), Inches(3.3)
     rect(s, bx, by, bw, bh, INK)
-    rect(s, bx, by, bw, Inches(0.55), cor)
+    if cor_txt == "Arco-íris":
+        faixas = [RGBColor(0xE5,0x39,0x35), ORANGE, YELLOW, GREEN, BLUE, RGBColor(0x8E,0x44,0xAD)]
+        fw_ = int(bw / len(faixas))
+        for i, c in enumerate(faixas):
+            rect(s, bx + fw_ * i, by, fw_ + 1, Inches(0.55), c)
+    else:
+        rect(s, bx, by, bw, Inches(0.55), cor)
     text(s, bx + Inches(0.15), by + Inches(0.02), bw - Inches(0.3), Inches(0.5),
          "MAPA DA RUA · " + nome.upper(), size=12, color=cor_txt_for(cor), bold=True,
          anchor=MSO_ANCHOR.MIDDLE)
@@ -186,12 +192,12 @@ def street_slide(nome, cor, cor_txt, img, pintura, montra_intro, lojas):
 
 
 def cor_txt_for(cor):
-    return INK if cor == YELLOW else WHITE
+    return INK if cor in (YELLOW, PINK) else WHITE
 
 
 street_slide(
-    "Rua Marquesa de Alorna", BLUE, "Azul", "mockups/rua-marquesa-de-alorna-azul.png",
-    ["Pintura de toda a faixa de rodagem em azul, com a identidade da rua.",
+    "Rua Marquesa de Alorna", PINK, "Arco-íris", "mockups/rua-marquesa-de-alorna-arco-iris.png",
+    ["Pintura de toda a faixa de rodagem em riscas de arco-íris (vermelho, laranja, amarelo, verde, azul e violeta).",
      "A montra fica no início da rua, visível a quem entra pela Av. da Igreja."],
     "Lojas abertas agora, como num centro comercial:",
     [("Restauração", "Pizzaria  [nome a confirmar]"),
