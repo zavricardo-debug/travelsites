@@ -222,79 +222,87 @@ def antes_slide(nome, img, comercios, nota):
 
 antes_slide(
     "Rua Acácio Paiva", "fotos/original-acacio-paiva.png",
-    ["Millennium bcp: agência bancária no início da rua",
-     "Restaurante com toldo escuro e esplanada coberta",
-     "Café e restauração no lado direito da rua",
-     "Comércio de bairro nas lojas do lado direito"],
+    ["Millennium bcp: agência bancária",
+     "Cobaia (n.º 19): restaurante mediterrânico, bar e música",
+     "Oakberry Açaí (n.º 3F)",
+     "Tasco Force (n.º 5D)",
+     "The Coffee Alvalade (n.º 14C): em abertura, a confirmar"],
     "Quem circula na Av. da Igreja não sabe que a rua tem restauração e serviços a poucos metros da avenida.")
 
 antes_slide(
     "Rua Marquesa de Alorna", "fotos/original-marquesa-de-alorna.png",
-    ["Pizzaria / restaurante com toldo azul e esplanada",
-     "Comércio de bairro com montras estreitas",
-     "Lojas de serviços no lado direito, com montras discretas",
-     "Estacionamento e motas à porta, sem sinal de comércio"],
+    ["Pasta Non Basta (n.º 17B): cozinha italiana",
+     "A Triunfante de Alvalade (n.º 18)",
+     "O Declive (n.º 22D)",
+     "Petisco de Alvalade (n.º 25)",
+     "Tasca O Cantinho dos Sabores (n.º 30A)",
+     "Mickael Mezdari, pâtisserie francesa (n.º 27C)"],
     "A rua é curta e quase sem sinalização; quem passa não percebe que há comércio a poucos metros.")
 
 antes_slide(
     "Rua José d'Esaguy", "fotos/original-jose-d-esaguy.png",
     ["Bankinter: agência bancária",
-     "Restaurante com sinal 'Restaurante' do lado esquerdo",
-     "Alberto Oculista: ótica com montra azul",
-     "Joalharia / relojoaria e comércio de bairro no lado direito"],
+     "Alberto Oculista: ótica",
+     "Isco Pão e Vinho (n.º 10D): padaria",
+     "Yokohama (n.º 3B): restaurante",
+     "Pérola do Ceira (n.º 4E): cozinha portuguesa",
+     "100 Montaditos (n.º 5)"],
     "As montras existem, mas não são vistas. A rua parece só de passagem, com carros a ocupar o espaço visual.")
 
 antes_slide(
     "Rua José Duro", "fotos/original-jose-duro.png",
-    ["BPI: agência bancária com montra em destaque",
-     "Snack-bar pastelaria restaurante com toldo verde (nome a confirmar)",
-     "Esplanada e comércio de bairro no lado direito",
-     "Ciclovia e arrumações de bicicletas com pouca animação"],
-    "A pastelaria e o restaurante têm procura de vizinhança, mas nenhum sinal que os anuncie a quem passa.")
+    ["BPI: agência bancária",
+     "O Luís (n.º 29): cozinha portuguesa",
+     "MADPIZZA (n.º 25): pizzaria",
+     "Do Beco Alvalade (n.º 31A): padaria e brunch",
+     "Restaurante Courenses (n.º 25C-D)",
+     "Taste Invaders (n.º 22)"],
+    "A padaria e os restaurantes têm procura de vizinhança, mas nenhum sinal que os anuncie a quem passa.")
 
 street_slide(
     "Rua Marquesa de Alorna", BLUE, "Azul", "fotos/rua-marquesa-de-alorna.png",
     ["Pintura de toda a faixa de rodagem em azul, uma cor do arco-íris por rua.",
      "A montra fica no início da rua, visível a quem entra pela Av. da Igreja."],
     "Lojas abertas agora, como num centro comercial:",
-    [("Restauração", "Pizzaria  [nome a confirmar]"),
-     ("Café", "Pastelaria / café  [nome]"),
-     ("Comércio", "Loja de bairro  [nome]"),
-     ("Comércio", "Loja de bairro  [nome]"),
-     ("Serviços", "[nome a confirmar]")])
+    [("Restauração", "Pasta Non Basta  (n.º 17B)"),
+     ("Restauração", "A Triunfante de Alvalade  (n.º 18)"),
+     ("Restauração", "Petisco de Alvalade  (n.º 25)"),
+     ("Café", "Tasca O Cantinho dos Sabores  (n.º 30A)"),
+     ("Pastelaria", "Mickael Mezdari  (n.º 27C)")])
 
 street_slide(
     "Rua Acácio Paiva", RED, "Vermelho", "fotos/rua-acacio-paiva.png",
     ["Pintura de toda a faixa de rodagem em vermelho, a cor mais visível de dia.",
      "Montra à entrada da rua com as lojas abertas e os horários do dia."],
     "Lojas abertas agora, como num centro comercial:",
-    [("Banco", "Millennium bcp  (visível na fachada)"),
-     ("Restauração", "Restaurante  [nome a confirmar]"),
-     ("Café", "Café / pastelaria  [nome]"),
-     ("Comércio", "Loja de bairro  [nome]"),
-     ("Serviços", "[nome]")])
+    [("Banco", "Millennium bcp"),
+     ("Restauração", "Cobaia  (n.º 19)"),
+     ("Açaí", "Oakberry Açaí  (n.º 3F)"),
+     ("Restauração", "Tasco Force  (n.º 5D)"),
+     ("Café", "The Coffee Alvalade  (n.º 14C)")])
 
 street_slide(
     "Rua José d'Esaguy", GREEN, "Verde", "fotos/rua-jose-d-esaguy.png",
     ["Pintura de toda a faixa de rodagem em verde.",
      "A montra fica à entrada, junto à Av. da Igreja, com as lojas e os serviços da rua."],
     "Lojas e serviços abertos agora:",
-    [("Banco", "Bankinter  (visível na fachada)"),
-     ("Ótica", "Alberto Oculista  (visível na fachada)"),
-     ("Restauração", "Restaurante  [nome a confirmar]"),
-     ("Comércio", "[nome]"),
-     ("Serviços", "[nome]")])
+    [("Banco", "Bankinter"),
+     ("Ótica", "Alberto Oculista"),
+     ("Padaria", "Isco Pão e Vinho  (n.º 10D)"),
+     ("Restauração", "Yokohama  (n.º 3B)"),
+     ("Restauração", "Pérola do Ceira  (n.º 4E)")])
 
 street_slide(
     "Rua José Duro", ORANGE, "Laranja", "fotos/rua-jose-duro.png",
     ["Pintura de toda a faixa de rodagem em laranja, a cor mais quente do percurso.",
      "Montra à entrada da rua, com as pastelarias, restaurantes e lojas abertas."],
     "Lojas abertas agora, como num centro comercial:",
-    [("Banco", "BPI  (visível na fachada)"),
-     ("Pastelaria", "Snack-bar pastelaria restaurante  [nome a confirmar]"),
-     ("Restauração", "Restaurante  [nome]"),
-     ("Comércio", "Loja de bairro  [nome]"),
-     ("Serviços", "[nome]")])
+    [("Banco", "BPI"),
+     ("Restauração", "O Luís  (n.º 29)"),
+     ("Pizzaria", "MADPIZZA  (n.º 25)"),
+     ("Padaria", "Do Beco Alvalade  (n.º 31A)"),
+     ("Restauração", "Taste Invaders  (n.º 22)")])
+
 
 # ---- Porque a cor ajuda ----
 s = prs.slides.add_slide(BLANK)
@@ -313,7 +321,7 @@ for i, (titulo, cor, desc) in enumerate(cards):
     rect(s, x, Inches(2.8), cw, Inches(2.9), CREAM)
     text(s, x + Inches(0.2), Inches(3.0), cw - Inches(0.4), Inches(2.6), desc, size=17, color=INK)
 text(s, Inches(0.7), Inches(6.0), Inches(12), Inches(0.8),
-     "Referência: a Rua Nova do Carvalho (Cais do Sodré) mostra o mesmo efeito. Sugerimos medir antes e depois "
+     "Lista de comércios: Junta de Freguesia de Alvalade (2021) e guias online; confirmar no local. Referência: a Rua Nova do Carvalho (Cais do Sodré) mostra o mesmo efeito. Sugerimos medir antes e depois "
      "(contagens de peões, inquérito a clientes e vendas dos comerciantes aderentes) para validar os resultados.",
      size=14, color=GREY)
 footer(s)
