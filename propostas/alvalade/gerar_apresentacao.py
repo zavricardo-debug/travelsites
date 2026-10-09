@@ -205,6 +205,53 @@ def cor_txt_for(cor):
     return INK if cor in (YELLOW, PINK) else WHITE
 
 
+# ---- Antes: fotografia original + comércio que não se vê da Av. da Igreja ----
+def antes_slide(nome, img, comercios, nota):
+    s = prs.slides.add_slide(BLANK)
+    header(s, nome, "Hoje · o que não se vê da Av. da Igreja")
+    pic = s.shapes.add_picture(img, Inches(0.6), Inches(1.95), width=Inches(6.6))
+    text(s, Inches(0.6), Inches(1.95) + pic.height + Inches(0.08), Inches(6.6), Inches(0.4),
+         "Fotografia atual (Google Street View, 2026)", size=12, color=GREY)
+    text(s, Inches(7.6), Inches(1.9), Inches(5.2), Inches(0.5),
+         "Comércio existente, hoje sem visibilidade", size=16, bold=True)
+    bullets(s, Inches(7.6), Inches(2.45), Inches(5.2), Inches(3.4), comercios, size=15)
+    rect(s, Inches(7.6), Inches(5.75), Inches(5.2), Inches(1.0), CREAM)
+    text(s, Inches(7.8), Inches(5.8), Inches(4.9), Inches(0.9), nota, size=13, color=INK)
+    footer(s)
+
+
+antes_slide(
+    "Rua Acácio Paiva", "fotos/original-acacio-paiva.png",
+    ["Millennium bcp: agência bancária no início da rua",
+     "Restaurante com toldo escuro e esplanada coberta",
+     "Café e restauração no lado direito da rua",
+     "Comércio de bairro nas lojas do lado direito"],
+    "Quem circula na Av. da Igreja não sabe que a rua tem restauração e serviços a poucos metros da avenida.")
+
+antes_slide(
+    "Rua Marquesa de Alorna", "fotos/original-marquesa-de-alorna.png",
+    ["Pizzaria / restaurante com toldo azul e esplanada",
+     "Comércio de bairro com montras estreitas",
+     "Lojas de serviços no lado direito, com montras discretas",
+     "Estacionamento e motas à porta, sem sinal de comércio"],
+    "A rua é curta e quase sem sinalização; quem passa não percebe que há comércio a poucos metros.")
+
+antes_slide(
+    "Rua José d'Esaguy", "fotos/original-jose-d-esaguy.png",
+    ["Bankinter: agência bancária",
+     "Restaurante com sinal 'Restaurante' do lado esquerdo",
+     "Alberto Oculista: ótica com montra azul",
+     "Joalharia / relojoaria e comércio de bairro no lado direito"],
+    "As montras existem, mas não são vistas. A rua parece só de passagem, com carros a ocupar o espaço visual.")
+
+antes_slide(
+    "Rua José Duro", "fotos/original-jose-duro.png",
+    ["BPI: agência bancária com montra em destaque",
+     "Snack-bar pastelaria restaurante com toldo verde (nome a confirmar)",
+     "Esplanada e comércio de bairro no lado direito",
+     "Ciclovia e arrumações de bicicletas com pouca animação"],
+    "A pastelaria e o restaurante têm procura de vizinhança, mas nenhum sinal que os anuncie a quem passa.")
+
 street_slide(
     "Rua Marquesa de Alorna", BLUE, "Azul", "fotos/rua-marquesa-de-alorna.png",
     ["Pintura de toda a faixa de rodagem em azul, uma cor do arco-íris por rua.",
@@ -248,6 +295,28 @@ street_slide(
      ("Restauração", "Restaurante  [nome]"),
      ("Comércio", "Loja de bairro  [nome]"),
      ("Serviços", "[nome]")])
+
+# ---- Porque a cor ajuda ----
+s = prs.slides.add_slide(BLANK)
+header(s, "Porque é que a cor e as montras trazem visitantes", "O argumento")
+cards = [
+    ("Identificável", BLUE, "Uma cor por rua torna o percurso fácil de ver e de lembrar. 'A rua vermelha' é uma indicação que toda a gente entende."),
+    ("Visível a partir da Av. da Igreja", PINK, "A cor e a montra à entrada funcionam como convite: quem passa vê que há algo ali, sem precisar de conhecer as lojas."),
+    ("Autêntica", GREEN, "Comércio de bairro, com restauração, pastelarias e serviços, é uma experiência que as pessoas procuram. A cor mostra essa autenticidade."),
+]
+cw = Inches(3.95)
+for i, (titulo, cor, desc) in enumerate(cards):
+    x = Inches(0.7) + i * (cw + Inches(0.2))
+    rect(s, x, Inches(2.0), cw, Inches(0.8), cor)
+    text(s, x + Inches(0.2), Inches(2.0), cw - Inches(0.4), Inches(0.8), titulo, size=19, bold=True,
+         color=INK if cor in (PINK, YELLOW) else WHITE, anchor=MSO_ANCHOR.MIDDLE)
+    rect(s, x, Inches(2.8), cw, Inches(2.9), CREAM)
+    text(s, x + Inches(0.2), Inches(3.0), cw - Inches(0.4), Inches(2.6), desc, size=17, color=INK)
+text(s, Inches(0.7), Inches(6.0), Inches(12), Inches(0.8),
+     "Referência: a Rua Nova do Carvalho (Cais do Sodré) mostra o mesmo efeito. Sugerimos medir antes e depois "
+     "(contagens de peões, inquérito a clientes e vendas dos comerciantes aderentes) para validar os resultados.",
+     size=14, color=GREY)
+footer(s)
 
 # 5. Montras
 s = prs.slides.add_slide(BLANK)
