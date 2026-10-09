@@ -11,6 +11,7 @@ GREY = RGBColor(0x5A, 0x5A, 0x6B)
 PINK = RGBColor(0xF4, 0x8F, 0xB6)
 BLUE = RGBColor(0x2E, 0x86, 0xDE)
 YELLOW = RGBColor(0xFF, 0xC8, 0x2E)
+RED = RGBColor(0xE5, 0x39, 0x35)
 GREEN = RGBColor(0x2E, 0xB8, 0x72)
 ORANGE = RGBColor(0xFF, 0x7A, 0x33)
 CREAM = RGBColor(0xFB, 0xF8, 0xF3)
@@ -158,10 +159,19 @@ def street_slide(nome, cor, cor_txt, img, pintura, montra_intro, lojas):
     s = prs.slides.add_slide(BLANK)
     header(s, nome, "Rua a pintar · montra à entrada")
     # Mockup da rua com a estrada pintada
-    pic = s.shapes.add_picture(img, Inches(0.6), Inches(1.95), width=Inches(6.9))
-    rect(s, Inches(0.6), Inches(1.95) + pic.height + Inches(0.1), Inches(0.35), Inches(0.35), cor)
-    text(s, Inches(1.05), Inches(1.95) + pic.height + Inches(0.05), Inches(6.8), Inches(0.5),
-         "Simulação visual: estrada pintada em " + cor_txt.lower() + " e montra à entrada", size=12, color=GREY)
+    import os
+    if os.path.exists(img):
+        pic = s.shapes.add_picture(img, Inches(0.6), Inches(1.95), width=Inches(6.9))
+        h = pic.height
+    else:
+        h = Inches(4.6)
+        rect(s, Inches(0.6), Inches(1.95), Inches(6.9), h, CREAM)
+        text(s, Inches(0.9), Inches(3.6), Inches(6.3), Inches(1.0),
+             "[Foto real da rua: estrada pintada em " + cor_txt.lower() + "]", size=18,
+             color=GREY, align=PP_ALIGN.CENTER)
+    rect(s, Inches(0.6), Inches(1.95) + h + Inches(0.1), Inches(0.35), Inches(0.35), cor)
+    text(s, Inches(1.05), Inches(1.95) + h + Inches(0.05), Inches(6.8), Inches(0.5),
+         "Estrada pintada em " + cor_txt.lower() + " e montra à entrada da rua", size=12, color=GREY)
     # Painel de texto
     text(s, Inches(8.2), Inches(1.9), Inches(4.6), Inches(1.5), pintura, size=14, color=INK)
     # Montra estilo 'diretório de centro comercial'
@@ -196,8 +206,8 @@ def cor_txt_for(cor):
 
 
 street_slide(
-    "Rua Marquesa de Alorna", PINK, "Arco-íris", "mockups/rua-marquesa-de-alorna-arco-iris.png",
-    ["Pintura de toda a faixa de rodagem em riscas de arco-íris (vermelho, laranja, amarelo, verde, azul e violeta).",
+    "Rua Marquesa de Alorna", BLUE, "Azul", "fotos/rua-marquesa-de-alorna.png",
+    ["Pintura de toda a faixa de rodagem em azul, uma cor do arco-íris por rua.",
      "A montra fica no início da rua, visível a quem entra pela Av. da Igreja."],
     "Lojas abertas agora, como num centro comercial:",
     [("Restauração", "Pizzaria  [nome a confirmar]"),
@@ -207,34 +217,34 @@ street_slide(
      ("Serviços", "[nome a confirmar]")])
 
 street_slide(
-    "Rua Acácio Paiva", YELLOW, "Amarelo", "mockups/rua-acacio-paiva-amarelo.png",
-    ["Pintura de toda a faixa de rodagem em amarelo, a cor mais visível de dia.",
+    "Rua Acácio Paiva", RED, "Vermelho", "fotos/rua-acacio-paiva.png",
+    ["Pintura de toda a faixa de rodagem em vermelho, a cor mais visível de dia.",
      "Montra à entrada da rua com as lojas abertas e os horários do dia."],
     "Lojas abertas agora, como num centro comercial:",
-    [("Café", "Café / pastelaria  [nome]"),
-     ("Restauração", "Restaurante  [nome]"),
+    [("Banco", "Millennium bcp  (visível na fachada)"),
+     ("Restauração", "Restaurante  [nome a confirmar]"),
+     ("Café", "Café / pastelaria  [nome]"),
      ("Comércio", "Loja de bairro  [nome]"),
-     ("Serviços", "[nome]"),
-     ("Comércio", "[nome]")])
+     ("Serviços", "[nome]")])
 
 street_slide(
-    "Rua José d'Esaguy", GREEN, "Verde", "mockups/rua-jose-d-esaguy-verde.png",
+    "Rua José d'Esaguy", GREEN, "Verde", "fotos/rua-jose-d-esaguy.png",
     ["Pintura de toda a faixa de rodagem em verde.",
      "A montra fica à entrada, junto à Av. da Igreja, com as lojas e os serviços da rua."],
     "Lojas e serviços abertos agora:",
     [("Banco", "Bankinter  (visível na fachada)"),
      ("Ótica", "Alberto Oculista  (visível na fachada)"),
-     ("Restauração", "[nome a confirmar]"),
+     ("Restauração", "Restaurante  [nome a confirmar]"),
      ("Comércio", "[nome]"),
      ("Serviços", "[nome]")])
 
 street_slide(
-    "Rua José Duro", ORANGE, "Laranja", "mockups/rua-jose-duro-laranja.png",
+    "Rua José Duro", ORANGE, "Laranja", "fotos/rua-jose-duro.png",
     ["Pintura de toda a faixa de rodagem em laranja, a cor mais quente do percurso.",
      "Montra à entrada da rua, com as pastelarias, restaurantes e lojas abertas."],
     "Lojas abertas agora, como num centro comercial:",
     [("Banco", "BPI  (visível na fachada)"),
-     ("Pastelaria", "Melindre  (visível na fachada)"),
+     ("Pastelaria", "Snack-bar pastelaria restaurante  [nome a confirmar]"),
      ("Restauração", "Restaurante  [nome]"),
      ("Comércio", "Loja de bairro  [nome]"),
      ("Serviços", "[nome]")])
