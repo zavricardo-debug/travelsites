@@ -72,7 +72,8 @@ def header(slide, title, kicker=None):
     text(slide, Inches(0.7), Inches(0.8), Inches(12), Inches(1.0), title, size=34, bold=True)
 
 
-def footer(slide, n):
+def footer(slide, n=None):
+    n = len(prs.slides._sldIdLst)
     text(slide, Inches(0.7), Inches(7.0), Inches(9), Inches(0.3),
          "Proposta · Junta de Freguesia de Alvalade · Alvalade Colorida", size=10, color=GREY)
     text(slide, Inches(11.9), Inches(7.0), Inches(0.8), Inches(0.3), str(n), size=10,
@@ -91,7 +92,7 @@ text(s, Inches(0.9), Inches(1.4), Inches(11.5), Inches(0.5), "PROPOSTA À JUNTA 
 text(s, Inches(0.9), Inches(2.0), Inches(11.5), Inches(2.2),
      "Alvalade Colorida", size=66, color=WHITE, bold=True)
 text(s, Inches(0.9), Inches(3.5), Inches(11.5), Inches(1.4),
-     "Dar cor e visibilidade às ruas Marquês de Alorna, Acácio Paiva, José de Esaguy e José Duro",
+     "Dar cor e visibilidade às ruas Marquesa de Alorna, Acácio Paiva, José d'Esaguy e José Duro",
      size=24, color=WHITE)
 text(s, Inches(0.9), Inches(6.2), Inches(11.5), Inches(0.5),
      "Comércio local · Montras abertas · Ruas que se veem da Av. da Igreja", size=16, color=PINK)
@@ -131,9 +132,9 @@ footer(s, 3)
 s = prs.slides.add_slide(BLANK)
 header(s, "Conceito: uma cor por rua, um percurso só", "A proposta")
 ruas = [
-    ("Marquês de Alorna", BLUE, "Azul", "Moda e acessórios"),
+    ("Marquesa de Alorna", BLUE, "Azul", "Moda e acessórios"),
     ("Acácio Paiva", YELLOW, "Amarelo", "Cafés, pastelarias e restauração"),
-    ("José de Esaguy", GREEN, "Verde", "Serviços e lojas de bairro"),
+    ("José d'Esaguy", GREEN, "Verde", "Serviços e lojas de bairro"),
     ("José Duro", ORANGE, "Laranja", "Comércio criativo e artesanato"),
 ]
 cw = Inches(2.95)
@@ -151,6 +152,86 @@ for i, (nome, cor, nome_cor, foco) in enumerate(ruas):
 text(s, Inches(0.7), Inches(6.45), Inches(12), Inches(0.5),
      "As cores e os focos são sugestões para discutir com os comerciantes.", size=14, color=GREY)
 footer(s, 4)
+
+# ---- Diapositivos por rua: estrada pintada + montra no início da rua ----
+def street_slide(nome, cor, cor_txt, img, pintura, montra_intro, lojas):
+    s = prs.slides.add_slide(BLANK)
+    header(s, nome, "Rua a pintar · montra à entrada")
+    # Mockup da rua com a estrada pintada
+    pic = s.shapes.add_picture(img, Inches(0.6), Inches(1.95), width=Inches(6.9))
+    rect(s, Inches(0.6), Inches(1.95) + pic.height + Inches(0.1), Inches(0.35), Inches(0.35), cor)
+    text(s, Inches(1.05), Inches(1.95) + pic.height + Inches(0.05), Inches(6.8), Inches(0.5),
+         "Simulação visual: estrada pintada de " + cor_txt.lower() + " e montra à entrada", size=12, color=GREY)
+    # Painel de texto
+    text(s, Inches(8.2), Inches(1.9), Inches(4.6), Inches(1.5), pintura, size=14, color=INK)
+    # Montra estilo 'diretório de centro comercial'
+    bx, by, bw, bh = Inches(8.2), Inches(3.5), Inches(4.6), Inches(3.3)
+    rect(s, bx, by, bw, bh, INK)
+    rect(s, bx, by, bw, Inches(0.55), cor)
+    text(s, bx + Inches(0.15), by + Inches(0.02), bw - Inches(0.3), Inches(0.5),
+         "MAPA DA RUA · " + nome.upper(), size=12, color=cor_txt_for(cor), bold=True,
+         anchor=MSO_ANCHOR.MIDDLE)
+    text(s, bx + Inches(0.15), by + Inches(0.6), bw - Inches(0.3), Inches(0.4),
+         montra_intro, size=11, color=PINK)
+    yy = by + Inches(0.95)
+    for categoria, loja in lojas:
+        text(s, bx + Inches(0.15), yy, Inches(1.6), Inches(0.35), categoria.upper(), size=10,
+             color=YELLOW, bold=True)
+        text(s, bx + Inches(1.7), yy, bw - Inches(1.85), Inches(0.35), loja, size=13, color=WHITE)
+        yy += Inches(0.36)
+    text(s, bx + Inches(0.15), by + bh - Inches(0.35), bw - Inches(0.3), Inches(0.3),
+         "▼ Você está na entrada da rua (Av. da Igreja)", size=10, color=PINK)
+    footer(s)
+    return s
+
+
+def cor_txt_for(cor):
+    return INK if cor == YELLOW else WHITE
+
+
+street_slide(
+    "Rua Marquesa de Alorna", BLUE, "Azul", "mockups/rua-marquesa-de-alorna-azul.png",
+    ["Pintura de toda a faixa de rodagem em azul, com a identidade da rua.",
+     "A montra fica no início da rua, visível a quem entra pela Av. da Igreja."],
+    "Lojas abertas agora, como num centro comercial:",
+    [("Restauração", "Pizzaria  [nome a confirmar]"),
+     ("Café", "Pastelaria / café  [nome]"),
+     ("Comércio", "Loja de bairro  [nome]"),
+     ("Comércio", "Loja de bairro  [nome]"),
+     ("Serviços", "[nome a confirmar]")])
+
+street_slide(
+    "Rua Acácio Paiva", YELLOW, "Amarelo", "mockups/rua-acacio-paiva-amarelo.png",
+    ["Pintura de toda a faixa de rodagem em amarelo, a cor mais visível de dia.",
+     "Montra à entrada da rua com as lojas abertas e os horários do dia."],
+    "Lojas abertas agora, como num centro comercial:",
+    [("Café", "Café / pastelaria  [nome]"),
+     ("Restauração", "Restaurante  [nome]"),
+     ("Comércio", "Loja de bairro  [nome]"),
+     ("Serviços", "[nome]"),
+     ("Comércio", "[nome]")])
+
+street_slide(
+    "Rua José d'Esaguy", GREEN, "Verde", "mockups/rua-jose-d-esaguy-verde.png",
+    ["Pintura de toda a faixa de rodagem em verde.",
+     "A montra fica à entrada, junto à Av. da Igreja, com as lojas e os serviços da rua."],
+    "Lojas e serviços abertos agora:",
+    [("Banco", "Bankinter  (visível na fachada)"),
+     ("Ótica", "Alberto Oculista  (visível na fachada)"),
+     ("Restauração", "[nome a confirmar]"),
+     ("Comércio", "[nome]"),
+     ("Serviços", "[nome]")])
+
+street_slide(
+    "Rua José Duro", ORANGE, "Laranja", "mockups/rua-jose-duro-laranja.png",
+    ["Pintura de toda a faixa de rodagem em laranja, a cor mais quente do percurso.",
+     "Montra à entrada da rua, com as pastelarias, restaurantes e lojas abertas."],
+    "Lojas abertas agora, como num centro comercial:",
+    [("Banco", "BPI  (visível na fachada)"),
+     ("Pastelaria", "Melindre  (visível na fachada)"),
+     ("Restauração", "Restaurante  [nome]"),
+     ("Comércio", "Loja de bairro  [nome]"),
+     ("Serviços", "[nome]")])
 
 # 5. Montras
 s = prs.slides.add_slide(BLANK)
